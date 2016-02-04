@@ -128,7 +128,7 @@ class Engine extends Sprite
 			if (_scene.hasTween) _scene.updateTweens();
 			_scene.update();
 		}
-		_scene.updateLists(false);
+		_scene.updateLists();
 		HXP.screen.update();
 	}
 
