@@ -352,6 +352,13 @@ class BitmapText extends Graphic
 					gd = _font.glyphData.get(' ');
 				}
 
+				// Shift by xOffset, yOffset if this is the first letter.
+				// Fixes issue where first letter is cut off by the buffer edge.
+				if (x == 0 && y == 0) {
+					rx -= gd.xOffset;
+					ry -= gd.yOffset;
+				}
+
 				if (letter==' ')
 				{
 					// it's a space, just move the cursor
