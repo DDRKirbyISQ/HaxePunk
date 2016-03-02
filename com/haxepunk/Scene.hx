@@ -58,7 +58,12 @@ class Scene extends Tweener
 	/**
 	 * Override this; called when Scene is changed, and the active scene is no longer this.
 	 */
-	public function end() { }
+	public function end() {
+        // Signal that every entity is being removed.
+        for (e in _update) {
+			e.removed();
+		}
+    }
 
 	/**
 	 * Override this, called when game gains focus
@@ -247,11 +252,11 @@ class Scene extends Tweener
 
 	/**
 	 * Returns a new Entity, or a stored recycled Entity if one exists.
-	 * 
+	 *
 	 * **Note**: The constructor is only called when creating a new entity,
 	 * when using a recycled one the constructor (with constructorsArgs)
 	 * isn't called. Instead use a function to initialize your entities.
-	 * 
+	 *
 	 * @param	classType			The Class of the Entity you want to add.
 	 * @param	addToScene			Add it to the Scene immediately.
 	 * @param	constructorsArgs	List of the entity constructor arguments (optional).
